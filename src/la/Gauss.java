@@ -1,4 +1,4 @@
-package blatt01z;
+package la;
 
 import java.util.Arrays;
 

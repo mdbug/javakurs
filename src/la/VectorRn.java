@@ -1,28 +1,61 @@
-package blatt01z;
+package la;
 
 import java.util.Arrays;
-
+/**
+ * Die Klasse symbolisiert einen Vektor im R^n
+ * @author Michael von Bothmer
+ *
+ */
 public class VectorRn {
 	private double[] v;
 	
+	/**
+	 * Gibt die Dimension des Vektors zurueck
+	 * @return
+	 */
 	public int getDimension() {
 		return v.length;
 	}
+	
+	/**
+	 * Setzt den Wert der angegebenen Koordinate
+	 * @param i die Koordinate
+	 * @param value der Wert
+	 */
 	public void set(int i, double value) {
 		v[i] = value;
 	}
+	
+	/**
+	 * Gibt den Wert der angegebenen Koordinate zurueck
+	 * @param die Koordinate des Vektors
+	 * @return den Wert der angegebenen Koordinate
+	 */
 	public double get(int i) {
 		return v[i];
 	}
 	
+	/**
+	 * Konstruiert einen Nullvektor im R^n
+	 * @param n die Dimension des Vektors
+	 */
 	public VectorRn(int n) {
 		this.v = new double[n];
 	}
 	
+	/**
+	 * Konstruiert einen neuen Vektor
+	 * @param v die Koordinaten des Vektors
+	 */
 	public VectorRn(double...v) {
 		this.v = v.clone();
 	}
 	
+	/**
+	 * Addiert den angegebenen Vektor zu diesem Vektor
+	 * @param v2 der Vektor der addiert werden soll
+	 * @return das Ergebnis der Vektoraddition
+	 */
 	public VectorRn add(VectorRn v2) {
 		if (v2.getDimension() != this.getDimension())
 			throw new RuntimeException("Inkompatible Dimensionen");
@@ -64,12 +97,15 @@ public class VectorRn {
 	
 	/**
 	 * Berechnet die Standardnorm des Vektors
-	 * @return die Standardnorm des Vektors zurueck
+	 * @return die Standardnorm des Vektors
 	 */
 	public double getNorm() {
 		return Math.sqrt(scalarProd(this, this));
 	}
 	
+	/**
+	 * {@inheritDoc}
+	 */
 	public String toString() {
 		return Arrays.toString(v).replace("[", "(").replace("]", ")") + "^T";
 	}
