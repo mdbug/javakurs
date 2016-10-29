@@ -105,7 +105,8 @@ public class VectorRn {
     
     /**
      * Prueft ob dieser Vektor und der Vektor v2 parallel zueinander sind
-     * @return die Standardnorm des Vektors
+     * @return true, falls dieser Vektor und v2 parallel zueinander sind.
+     * false, sont.
      */
     public boolean isParallel(VectorRn v2) {
         // Maximaler relativer Fehler der beim Double-Vergleich toleriert wird
