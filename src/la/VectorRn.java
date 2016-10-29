@@ -105,6 +105,7 @@ public class VectorRn {
     
     /**
      * Prueft ob dieser Vektor und der Vektor v2 parallel zueinander sind
+     * @param v2 der zu pruefende Vektor
      * @return true, falls dieser Vektor und v2 parallel zueinander sind.
      *         false, sonst.
      */
