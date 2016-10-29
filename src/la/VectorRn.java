@@ -102,6 +102,28 @@ public class VectorRn {
     public double getNorm() {
         return Math.sqrt(scalarProd(this, this));
     }
+    
+    /**
+     * Prueft ob dieser Vektor und der Vektor v2 parallel zueinander sind
+     * @return die Standardnorm des Vektors
+     */
+    public boolean isParallel(VectorRn v2) {
+        // Maximaler relativer Fehler der beim Double-Vergleich toleriert wird
+        final double EPSILON = 1e-5;
+        
+        if (v2.getDimension() != this.getDimension())
+            throw new RuntimeException("Inkompatible Dimensionen");
+        
+        // Zwei Vektoren v1 und v2 sind parallel, falls ein reelles lambda existiert, sodass
+        // v1 = lambda * v2
+        double lambda = this.get(0) / v2.get(0);
+        for(int i = 1; i < this.getDimension(); i++) {
+           double relativeError = Math.abs(((this.get(i) / v2.get(i)) - lambda) / lambda);
+           if ( relativeError > EPSILON)
+               return false;
+        }
+        return true;
+    }
 
     /**
      * {@inheritDoc}
