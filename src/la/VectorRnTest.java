@@ -7,9 +7,11 @@ public class VectorRnTest {
         VectorRn b = new VectorRn(5, 6, 7, 8);
         VectorRn c = new VectorRn(1, 2);
         VectorRn d = new VectorRn(15, 18, 21, 24);
+        VectorRn e = new VectorRn(5, 2);
+        VectorRn f = new VectorRn(-2, 5);
         double t = 3;
         
-        final int TESTFAELLE = 9;
+        final int TESTFAELLE = 12;
         for (int i = 0; i < TESTFAELLE ; i++) {
             try {
                 switch (i) {
@@ -49,9 +51,21 @@ public class VectorRnTest {
                     System.out.print("b || d = ");
                     System.out.println(b.isParallel(d));
                     break;
+                case 9:
+                    System.out.print("<(a,b) = ");
+                    System.out.println(VectorRn.getWinkel(a, b));
+                    break;
+                case 10:
+                    System.out.print("<(e,f) = ");
+                    System.out.println(VectorRn.getWinkel(e, f));
+                    break;
+                case 11:
+                    System.out.print("Projektion von e auf f = ");
+                    System.out.println(VectorRn.projiziereV1AufV2(e, f));
+                    break;
                 }
-            } catch (RuntimeException e) {
-                System.out.println(e.getMessage());
+            } catch (RuntimeException exception) {
+                System.out.println(exception.getMessage());
             }
         }
     }

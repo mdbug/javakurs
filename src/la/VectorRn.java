@@ -1,8 +1,10 @@
 package la;
 
 import java.util.Arrays;
+
 /**
  * Die Klasse symbolisiert einen Vektor im R^n
+ * 
  * @author Michael von Bothmer
  *
  */
@@ -11,6 +13,7 @@ public class VectorRn {
 
     /**
      * Gibt die Dimension des Vektors zurueck
+     * 
      * @return
      */
     public int getDimension() {
@@ -19,8 +22,11 @@ public class VectorRn {
 
     /**
      * Setzt den Wert der angegebenen Koordinate
-     * @param i die Koordinate
-     * @param value der Wert
+     * 
+     * @param i
+     *            die Koordinate
+     * @param value
+     *            der Wert
      */
     public void set(int i, double value) {
         v[i] = value;
@@ -28,7 +34,9 @@ public class VectorRn {
 
     /**
      * Gibt den Wert der angegebenen Koordinate zurueck
-     * @param die Koordinate des Vektors
+     * 
+     * @param die
+     *            Koordinate des Vektors
      * @return den Wert der angegebenen Koordinate
      */
     public double get(int i) {
@@ -37,7 +45,9 @@ public class VectorRn {
 
     /**
      * Konstruiert einen Nullvektor im R^n
-     * @param n die Dimension des Vektors
+     * 
+     * @param n
+     *            die Dimension des Vektors
      */
     public VectorRn(int n) {
         this.v = new double[n];
@@ -45,15 +55,29 @@ public class VectorRn {
 
     /**
      * Konstruiert einen neuen Vektor
-     * @param v die Koordinaten des Vektors
+     * 
+     * @param v
+     *            die Koordinaten des Vektors
      */
-    public VectorRn(double...v) {
+    public VectorRn(double... v) {
         this.v = v.clone();
     }
 
     /**
+     * Copy-Konstruktor
+     * 
+     * @param v
+     *            die Koordinaten des Vektors
+     */
+    public VectorRn(VectorRn vector) {
+        this.v = vector.v.clone();
+    }
+
+    /**
      * Addiert den angegebenen Vektor zu diesem Vektor
-     * @param v2 der Vektor der addiert werden soll
+     * 
+     * @param v2
+     *            der Vektor der addiert werden soll
      * @return das Ergebnis der Vektoraddition
      */
     public VectorRn add(VectorRn v2) {
@@ -61,14 +85,16 @@ public class VectorRn {
             throw new RuntimeException("Inkompatible Dimensionen");
         VectorRn vResult = new VectorRn(this.getDimension());
         for (int i = 0; i < this.getDimension(); i++) {
-            vResult.set(i,this.get(i) + v2.get(i));
+            vResult.set(i, this.get(i) + v2.get(i));
         }
         return vResult;
     }
 
     /**
      * Multipliziert den Vektor mit einem Skalar
-     * @param ein Skalar mit dem der Vektor multipliziert 
+     * 
+     * @param ein
+     *            Skalar mit dem der Vektor multipliziert
      * @return
      */
     public VectorRn mult(double d) {
@@ -81,15 +107,18 @@ public class VectorRn {
 
     /**
      * Berechnet das Standard-Skalarprodukt zweier Vektoren
-     * @param v1 der erste Vektor
-     * @param v2 der zweite Vektor
+     * 
+     * @param v1
+     *            der erste Vektor
+     * @param v2
+     *            der zweite Vektor
      * @return das Standardskalarprodukt der Vektoren v1 und v2
      */
     public static double scalarProd(VectorRn v1, VectorRn v2) {
         if (v1.getDimension() != v2.getDimension())
             throw new RuntimeException("Inkompatible Dimensionen");
         double sum = 0;
-        for (int i=0; i<v1.getDimension(); i++) {
+        for (int i = 0; i < v1.getDimension(); i++) {
             sum += v1.get(i) * v2.get(i);
         }
         return sum;
@@ -97,17 +126,20 @@ public class VectorRn {
 
     /**
      * Berechnet die Standardnorm des Vektors
+     * 
      * @return die Standardnorm des Vektors
      */
     public double getNorm() {
         return Math.sqrt(scalarProd(this, this));
     }
-    
+
     /**
      * Prueft ob dieser Vektor und der Vektor v2 parallel zueinander sind
-     * @param v2 der zu pruefende Vektor
-     * @return true, falls dieser Vektor und v2 parallel zueinander sind.
-     *         false, sonst.
+     * 
+     * @param v2
+     *            der zu pruefende Vektor
+     * @return true, falls dieser Vektor und v2 parallel zueinander sind. false,
+     *         sonst.
      */
     public boolean isParallel(VectorRn v2) {
         // Maximaler relativer Fehler der beim Double-Vergleich toleriert wird
@@ -118,13 +150,59 @@ public class VectorRn {
         
         // Zwei Vektoren v1 und v2 sind parallel, falls ein reelles lambda existiert, sodass
         // v1 = lambda * v2
-        double lambda = this.get(0) / v2.get(0);
-        for(int i = 1; i < this.getDimension(); i++) {
-           double relativeError = Math.abs(((this.get(i) / v2.get(i)) - lambda) / lambda);
-           if ( relativeError > EPSILON)
-               return false;
+        double lambda = 0;
+        boolean lambdaFound = false;
+            
+        for (int i = 0; i < this.getDimension(); i++) {
+            double xi = this.get(i);
+            double yi = v2.get(i);
+            if (xi != 0 && yi != 0) {
+                if (!lambdaFound) {
+                    lambda = xi / yi;
+                    lambdaFound = true;
+                } else {
+                    double relativeError = Math.abs(((xi / yi) - lambda) / lambda);
+                    if ( relativeError > EPSILON) {
+                        return false;
+                    }
+                }
+            } else if (xi != yi) {
+                return false;
+            }
         }
         return true;
+    }
+
+    /**
+     * Berechnet den Winkel zwischen v1 und v2 im Bogenmass
+     * 
+     * @param v1
+     *            ein Vektor
+     * @param v2
+     *            der andere Vektor
+     * @return Gibt den Winkel zwischen den Vektoren im Bogenmass zurueck
+     */
+    public static double getWinkel(VectorRn v1, VectorRn v2) {
+        if (v1.getDimension() != v2.getDimension())
+            throw new RuntimeException("Inkompatible Dimensionen");
+
+        return Math.acos(scalarProd(v1, v2) / (v1.getNorm() * v2.getNorm()));
+    }
+
+    /**
+     * Berechnet die orthogonale Projektion von v1 auf v2
+     * 
+     * @param v1
+     *            der Vektor der projiziert werden soll
+     * @param v2
+     *            der Vektor auf den projiziert werden soll
+     * @return die orthogonale Projektion von v1 auf v2
+     */
+    public static VectorRn projiziereV1AufV2(VectorRn v1, VectorRn v2) {
+        if (v1.getDimension() != v2.getDimension())
+            throw new RuntimeException("Inkompatible Dimensionen");
+
+        return v2.mult(scalarProd(v1, v2) / scalarProd(v2, v2));
     }
 
     /**
