@@ -126,6 +126,10 @@ public class VectorRn {
         }
         return true;
     }
+    
+    public static double getWinkel(VectorRn v1, VectorRn v2) {
+        return Math.arccos();
+    }
 
     /**
      * {@inheritDoc}
