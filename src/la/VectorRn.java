@@ -173,10 +173,6 @@ public class VectorRn {
         return true;
     }
     
-    public static double getWinkel(VectorRn v1, VectorRn v2) {
-        return Math.arccos();
-    }
-
     /**
      * Berechnet den Winkel zwischen v1 und v2 im Bogenmass
      * 
@@ -211,6 +207,14 @@ public class VectorRn {
             throw new RuntimeException("Kein Vektor darf 0 sein");
 
         return v2.mult(scalarProd(v1, v2) / scalarProd(v2, v2));
+    }
+    
+    /**
+     * 
+     * @return
+     */
+    public VectorRn[] bestimmeSenkrechteVektoren() {
+       return null; 
     }
 
     /**
