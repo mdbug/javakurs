@@ -91,8 +91,7 @@ public class Datum {
 
     public String getWochentag() {
         int[] monate = {0, 3, 2, 5, 0, 3, 5, 1, 4, 6, 2, 4};
-        int j = jahr;
-        j -= monat < 3 ? 1 : 0;
+        int j = jahr - (monat < 3 ? 1 : 0);
 
         return wochentage[(j + (j / 4) - (j / 100) + (j / 400) + monate[monat - 1] + tag - 1) % 7];
     }
