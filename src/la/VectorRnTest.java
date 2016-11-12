@@ -1,5 +1,7 @@
 package la;
 
+import java.util.Arrays;
+
 public class VectorRnTest {
 
     public static void main(String[] args) {
@@ -9,9 +11,11 @@ public class VectorRnTest {
         VectorRn d = new VectorRn(15, 18, 21, 24);
         VectorRn e = new VectorRn(5, 2);
         VectorRn f = new VectorRn(-2, 5);
+        VectorRn g = new VectorRn(0, 0, 0, 0);
+        VectorRn h = new VectorRn(3, 1, 4);
         double t = 3;
         
-        final int TESTFAELLE = 12;
+        final int TESTFAELLE = 14;
         for (int i = 0; i < TESTFAELLE ; i++) {
             try {
                 switch (i) {
@@ -63,9 +67,17 @@ public class VectorRnTest {
                     System.out.print("Projektion von e auf f = ");
                     System.out.println(VectorRn.projiziereV1AufV2(e, f));
                     break;
+                case 12:
+                    System.out.print("Senkrechte Vektoren von g: ");
+                    System.out.println(Arrays.toString(g.bestimmeSenkrechteVektoren()));
+                    break;
+                case 13:
+                    System.out.print("Senkrechte Vektoren von h: ");
+                    System.out.println(Arrays.toString(h.bestimmeSenkrechteVektoren()));
+                    break;
                 }
             } catch (RuntimeException exception) {
-                System.out.println(exception.getMessage());
+                System.out.println("Exception: " + exception.getMessage());
             }
         }
     }
