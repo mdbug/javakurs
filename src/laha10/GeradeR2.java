@@ -7,9 +7,7 @@ public class GeradeR2 extends AbstrakteEbene implements Hyperebene{
 
 
     public GeradeR2 (Punkt p1, Punkt p2) {
-
-        VektorRn richtungsvektor = p1.getVektorRn().mult(-1).add(p2.getVektorRn());
-        super(p1, new VektorRn[]{richtungsvektor});
+        super(p1, new VektorRn[]{p1.getVektorRn().mult(-1).add(p2.getVektorRn())});
     }
 
     public GeradeR2 (VektorRn n, Punkt p) {
@@ -28,14 +26,7 @@ public class GeradeR2 extends AbstrakteEbene implements Hyperebene{
     @Override
     public String getNormalform() {
         double[] n = getNormalenvektor().getElements();
-        StringBuilder sb = new StringBuilder();
-        for (int i = 0; i < n.length; ++i) {
-            sb.append(n[i] + "x_" + (i+1));
-            if (i < n.length-1)
-                sb.append(" + ");
-        }
-        sb.append(" = ");
-        sb.append(VektorRn.scalarProd(getNormalenvektor(), getOrtsvektor().getVektorRn()));
-        return sb.toString();
+        double np = VektorRn.scalarProd(getNormalenvektor(), getOrtsvektor().getVektorRn());
+        return String.format("%.2fx %c %.2fy = %.2f", n[0], n[1] < 0 ? '-' : '+', Math.abs(n[1]), np);
     }
 }

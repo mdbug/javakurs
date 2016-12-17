@@ -14,6 +14,5 @@ public class GeradeR2Test {
 		System.out.println();
 		System.out.println("Normalenvektor Gerade2: "+gerade2.getNormalenvektor());
 		System.out.println("Normalenform Gerade2: "+gerade2.getNormalform());
-		
 	}
 }
