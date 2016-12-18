@@ -1,19 +1,43 @@
 package laha10;
 
+
 /**
- * Created by BO on 16.12.2016.
+ * Die Klasse stellt Geraden im R^2 dar
  */
 public class GeradeR2 extends AbstrakteEbene implements Hyperebene{
 
-
+    /**
+     * Erzeugt eine Gerade anhand der Vorgabe zweier Punkte
+     * @param p1 Punkt1
+     * @param p2 Punkt2
+     */
     public GeradeR2 (Punkt p1, Punkt p2) {
-        super(p1, new VektorRn[]{p1.getVektorRn().mult(-1).add(p2.getVektorRn())});
+        if (p1.getVektorRn().getElements().length != 2 || p2.getVektorRn().getElements().length != 2)
+            throw new RuntimeException("Die Dimension beider Punkte muss 2 sein");
+
+        this.p = p1;
+        this.r = new VektorRn[]{p1.getVektorRn().mult(-1).add(p2.getVektorRn())};
     }
 
+    /**
+     * Erzeugt eine Gerade anhand der Vorgabe eines Punktes und eines Normalenvektors
+     * @param n Normalenvektor
+     * @param p Punkt
+     */
     public GeradeR2 (VektorRn n, Punkt p) {
-        super(p, new VektorRn[]{n});
+        if (p.getVektorRn().getElements().length != 2 || n.getElements().length != 2)
+            throw new RuntimeException("Die Dimensionen muessen 2 sein");
+
+        double[] richtungsvektor = new double[2];
+        richtungsvektor[0] = n.getElement(1);
+        richtungsvektor[1] = -n.getElement(0);
+        this.p = p;
+        this.r = new VektorRn[] {new VektorRn(richtungsvektor)};
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public VektorRn getNormalenvektor() {
         VektorRn richtungsvektor = getRichtungsvektoren()[0];
@@ -23,6 +47,9 @@ public class GeradeR2 extends AbstrakteEbene implements Hyperebene{
         return normalenvektor;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public String getNormalform() {
         double[] n = getNormalenvektor().getElements();
