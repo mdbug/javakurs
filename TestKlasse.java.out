@@ -1,4 +1,4 @@
-package blatt02;
+package java.blatt02;
 
 public class TestKlasse {
 	int a; 
