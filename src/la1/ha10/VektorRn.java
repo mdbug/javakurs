@@ -1,4 +1,4 @@
-package laha10;
+package la1.ha10;
 
 /**
  * Klasse zur Darstellung von Vektoren aus dem n-dimensionalen Raum
