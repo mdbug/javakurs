@@ -1,4 +1,4 @@
-package laha10;
+package la1.ha10;
 
 public interface Hyperebene {
 	/**

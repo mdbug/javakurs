@@ -1,4 +1,4 @@
-package laha10;
+package la1.ha10;
 
 public class GeradeR2Test {
 	public static void main(String[] args){
