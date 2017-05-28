@@ -1,7 +1,6 @@
-package blatt08;
+package algo.blatt08;
 
 import java.io.InputStream;
-import java.util.ArrayDeque;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Scanner;
@@ -105,20 +104,20 @@ public class Graph {
         }
     }
 
-    public ArrayList<Integer> bfs(int start) {
-        ArrayDeque<Integer> queue = new ArrayDeque<>();
-        bfs(start, queue);
-        return list;
-    }
+//    public ArrayList<Integer> bfs(int start) {
+//        ArrayDeque<Integer> queue = new ArrayDeque<>();
+//        bfs(start, queue);
+//        return list;
+//    }
 
-    public void bfs(int start, ArrayDeque<Integer> queue) {
-        if (list.indexOf(start) != -1) {
-            return;
-        }
-
-        Collections.sort(adjazenzliste.get(start-1));
-        for (int child : adjazenzliste.get(start-1)) {
-            list.add(child + 1);
-        }
-    }
+//    public void bfs(int start, ArrayDeque<Integer> queue) {
+//        if (list.indexOf(start) != -1) {
+//            return;
+//        }
+//
+//        Collections.sort(adjazenzliste.get(start-1));
+//        for (int child : adjazenzliste.get(start-1)) {
+//            list.add(child + 1);
+//        }
+//    }
 }

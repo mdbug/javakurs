@@ -1,4 +1,4 @@
-package blatt08;
+package algo.blatt08;
 
 public class TestGraph {
     public static void main(String[] args) {

@@ -9,7 +9,7 @@ public interface Hyperebene {
 	public VektorRn getNormalenvektor();
 	
 	/**
-	 * gibt eine Normalform der Ebene zur�ck
+	 * gibt eine Normalform der Ebene zurueck
 	 * @return Normalform der Ebene
 	 */
 	public String getNormalform();
