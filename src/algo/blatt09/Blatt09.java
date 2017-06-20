@@ -57,14 +57,6 @@ public class Blatt09 {
         printBewegungen(n-1, other, ziel);
     }
 
-    public static ArrayList<Integer> shortestWay(int[] f) {
-        return shortestWay(f, 0);
-    }
-
-    public static ArrayList<Integer> shortestWay(int[] f, int pos, int punkte, ) {
-
-    }
-
     public static void main(String[] args) {
         printPermutationen(3);
         printPermutationen(2, 4);

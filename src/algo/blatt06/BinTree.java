@@ -85,7 +85,7 @@ public class BinTree {
 	 * Sucht nach dem Wert x im Baum (iterativ)
 	 * 
 	 * @param x Der zu suchende Wert.
-	 * @return den Knoten, der den Wert x beinhaltet oder null, 
+	 * @return den Kante, der den Wert x beinhaltet oder null,
 	 * falls x nicht im Baum vorhanden ist.
 	 */
 	public TreeNode getNode(int x) {
@@ -105,7 +105,7 @@ public class BinTree {
 	 * Prueft, ob der Wert n im Baum vorhanden ist.
 	 * 
 	 * @param n Der zu pruefende Wert.
-	 * @return true, falls der Knoten im Baum vorhanden ist, sonst false.
+	 * @return true, falls der Kante im Baum vorhanden ist, sonst false.
 	 */
 	public boolean contains(int n) {
 		return getNode(n) != null;
