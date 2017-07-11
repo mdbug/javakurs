@@ -6,7 +6,7 @@ import java.util.Comparator;
 public class InsertionSort implements Verfahren {
     @Override
     public void sortiere(ArrayList<String> liste, Comparator<String> kriterium) {
-        for (int i = 1; i < liste.size(); i++) {
+        for (int i = 1; i < liste.size(); ++i) {
             String tmp = liste.get(i);
             int j = i;
             while (j > 0 && kriterium.compare(liste.get(j - 1), tmp) > 0) {
